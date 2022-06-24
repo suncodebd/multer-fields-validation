@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable prettier/prettier */
+
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
@@ -25,7 +24,7 @@ const storage = multer.diskStorage({
 const upload = multer({
     storage,
     limits: {
-        fileSize: 1000000, // 1MB
+        fileSize: 10000000, // 1MB
     },
     fileFilter: (req, file, cb) => {
         if (file.fieldname === 'avatar') {
@@ -37,7 +36,7 @@ const upload = multer({
                 cb(new Error('Only .jpg, .png or .jpeg format  allowed!'));
             }
         } else if (file.fieldname === 'doc') {
-            if (file.mimetype === 'aplication/pdf') {
+            if (file.mimetype === 'application/pdf') {
                 cb(null, true);
             } else {
                 cb(new Error('only .pdf format allowed'));
